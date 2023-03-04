@@ -8,3 +8,5 @@ export const LOGOUT='/api/auth/logout'
 export const LANDING='/'
 
 
+
+export const REGISTER_PROVIDER_API = '/api/providers/register'
