@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { listing } from "@prisma/client";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { BottomNavigation } from "@/components/BottomNavigation";
 
 
 const UserDash = () => {
@@ -24,6 +25,9 @@ const UserDash = () => {
         <>
            UserDash
            {/* show list of all the providers */}
+
+      <BottomNavigation />
+
         </>
     )
 }

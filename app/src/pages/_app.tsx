@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     console.log(window.innerWidth)
     const handleEvent = (ev: any) => {
-      setIsWidthOkay(window.innerWidth<450)
+      setIsWidthOkay(window.innerWidth<650)
     }
     window.addEventListener('resize', handleEvent)
     return () => window.removeEventListener('resize', handleEvent)
