@@ -45,7 +45,8 @@ export default async function handler(
                     name,
                     picture,
                     created_time: currTime,
-                    last_token_generated_at: currTime
+                    last_token_generated_at: currTime,
+                    listing_id: null
                 }
             })
         } else {

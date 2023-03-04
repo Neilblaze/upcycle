@@ -5,6 +5,7 @@ import { listing } from "@prisma/client";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { BottomNavigation } from "@/components/BottomNavigation";
+import { getErrorStringFromAxiosErr } from "../p/add-project";
 
 
 const UserDash = () => {
@@ -15,7 +16,7 @@ const UserDash = () => {
             setListings(e.data.listings)
             setIsLoading(false)
         }).catch(err => {
-            toast.error(err.message)
+            toast.error(getErrorStringFromAxiosErr(err))
             setIsLoading(false)
         })
     }, [])

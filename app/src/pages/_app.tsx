@@ -6,6 +6,7 @@ import type { AppProps } from 'next/app'
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getErrorStringFromAxiosErr } from './p/add-project';
 
 export default function App({ Component, pageProps }: AppProps) {
   const { setUser } = useAuthStore()
@@ -18,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
         setUser(null, false)
       }
     }).catch(err => {
-      toast.error(err.message)
+      toast.error(getErrorStringFromAxiosErr(err))
       setUser(null, false, err.message)
     })
   }, [])

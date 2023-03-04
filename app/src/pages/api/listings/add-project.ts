@@ -56,6 +56,10 @@ export default async function handler(
                 return res.status(500).json({ error: 'Error parsing form data' });
             }
 
+            if((fields.short_desc as string).length >50){
+                return res.status(400).json({ error: 'Description should be <=50 chars' });
+            }
+
             // Do something with the form data
             const filePath = (files.image as any).filepath
 

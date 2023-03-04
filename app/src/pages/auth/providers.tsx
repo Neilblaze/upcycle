@@ -4,6 +4,7 @@ import { Field, Form, Formik } from "formik";
 import axios from "axios";
 import { potential_provider } from "@prisma/client";
 import { toast } from "react-toastify";
+import { getErrorStringFromAxiosErr } from "../p/add-project";
 
 
 const PotentialProviderForm = () => {
@@ -31,7 +32,7 @@ const PotentialProviderForm = () => {
                                     resetForm()
                                     toast.success('Successfully submitted the application form! 🔥')
                                 }catch(err: any){
-                                    toast.error(err.message)
+                                    toast.error(getErrorStringFromAxiosErr(err))
                                 }
 
                             }}

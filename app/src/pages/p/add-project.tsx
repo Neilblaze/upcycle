@@ -3,24 +3,28 @@ import { FormBlockFileInput } from "@/components/FormBlockFileInput"
 import { FormBlockTextInput } from "@/components/FormBlockTextInput"
 import { ProviderTopNavigation } from "@/components/ProviderTopNavigation"
 import { ADD_PROJECT_FOR_PROVIDER_API, DASHBOARD } from "@/utils/config"
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import { Field, Form, Formik } from "formik"
 import { useRouter } from "next/router"
 import { toast } from "react-toastify"
 import { ButtonView } from "./dash"
 
 
+export const getErrorStringFromAxiosErr = (e: AxiosError) => {
+    const tmp = (e.response?.data as any)
+    return tmp?.error ? tmp?.error : e.message;
+}
 
 const AddProject = () => {
 
-    const router=useRouter()
+    const router = useRouter()
     return (
         <div className="px-4 mx-auto">
             <ProviderTopNavigation />
 
             <h1 className="text-2xl font-black mb-7">Add a new project to your profile</h1>
-            <Formik initialValues={{image: '', short_desc: '' }} onSubmit={(e) => {
-                const formData=new FormData()
+            <Formik initialValues={{ image: '', short_desc: '' }} onSubmit={(e) => {
+                const formData = new FormData()
                 formData.append('image', e.image)
                 formData.append('short_desc', e.short_desc)
 
@@ -29,7 +33,7 @@ const AddProject = () => {
                     toast.success('project added successfully')
                     router.push(DASHBOARD)
                 }).catch(e => {
-                    toast.error(e.message)
+                    toast.error(getErrorStringFromAxiosErr(e))
                 })
 
             }}>
