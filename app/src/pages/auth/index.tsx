@@ -1,5 +1,6 @@
 import Head from "next/head"
 import { GOOGLE_AUTH_START } from '@/utils/config';
+import { withNoAuth } from "@/authGuards/withNoAuth";
 
 
 const AuthScreen = () => {
@@ -49,4 +50,4 @@ const AuthScreen = () => {
     )
 }
 
-export default AuthScreen
+export default withNoAuth(AuthScreen)

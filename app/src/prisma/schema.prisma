@@ -17,14 +17,35 @@ model user {
     email                   String   @unique
     created_time            DateTime @default(now())
     last_token_generated_at DateTime @default(now())
+    is_provider             Boolean  @default(false)
+    listings   listing[]
 }
 
 model potential_provider {
-    id         String @id @default(auto()) @map("_id") @db.ObjectId
+    id         String     @id @default(auto()) @map("_id") @db.ObjectId
     name       String
-    email      String @unique
+    email      String     @unique
     phone      String
     address    String
     why_join   String
     experience String
+}
+
+model listing {
+    id           String               @id @default(auto()) @map("_id") @db.ObjectId
+    listing_name String
+    categories   String[]
+    city         String
+    projects     listings_projects[]
+    admin        user   @relation(fields: [adminId], references: [id])
+    adminId      String               @db.ObjectId
+}
+
+model listings_projects {
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    provider    listing @relation(fields: [providerId], references: [id])
+    providerId  String   @db.ObjectId
+    asset_url   String
+    title       String
+    description String
 }

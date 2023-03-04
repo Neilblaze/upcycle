@@ -1,17 +1,21 @@
-import { UserModel } from '@/models/UserModel'
+import { user } from '@prisma/client'
 import create from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
 interface AuthState {
-    user: UserModel | null
-    setUser: (user: UserModel) => void
+    user: user | null
+    isLoading: boolean
+    error: string | null
+    setUser: (user: user | null, isLoading: boolean, error?: string | null) => void
 }
 
 export const useAuthStore = create<AuthState>()(
     devtools(
             (set) => ({
                 user: null,
-                setUser: (user) => set((state) => ({ user }))
+                isLoading: true,
+                error: null,
+                setUser: (user, isLoading, error=null) => set((state) => ({ user, isLoading, error }))
             }),
             {
                 name: 'bear-storage',

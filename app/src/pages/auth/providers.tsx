@@ -6,7 +6,7 @@ import { potential_provider } from "@prisma/client";
 import { toast } from "react-toastify";
 
 
-const AuthScreen = () => {
+const PotentialProviderForm = () => {
     return (
         <>
             <Head>
@@ -93,4 +93,4 @@ const AuthScreen = () => {
     )
 }
 
-export default AuthScreen
+export default PotentialProviderForm

@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import cookie from 'cookie'
-import { ERROR_ROUTE, LANDING } from '../../../../../tmp/app/config/routes';
+import { LANDING,ERROR_ROUTE } from '@/utils/config';
 export default function handler(
     req: NextApiRequest,
     res: NextApiResponse
