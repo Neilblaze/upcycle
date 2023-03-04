@@ -19,6 +19,11 @@ export default async function handler(
         const primsa = new PrismaClient()
         const results=await primsa.listing.findMany({
             select: {
+                categories: true,
+                city: true,
+                listing_name: true,
+                picture_url: true,
+                adminId: true,
                 projects: {
                     select: {
                         asset_url: true,
