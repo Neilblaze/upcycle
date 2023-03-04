@@ -18,6 +18,8 @@ const UserDash = () => {
             setIsLoading(false)
         })
     }, [])
+
+    console.log(listings)
     return (
         <>
            UserDash

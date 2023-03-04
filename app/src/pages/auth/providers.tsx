@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { GOOGLE_AUTH_START, REGISTER_PROVIDER_API } from '@/utils/config';
+import {  REGISTER_PROVIDER_API } from '@/utils/config';
 import { Field, Form, Formik } from "formik";
 import axios from "axios";
 import { potential_provider } from "@prisma/client";
