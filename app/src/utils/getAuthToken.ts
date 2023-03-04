@@ -6,6 +6,7 @@ export type jwtUserPayloadType = {
   id: string;
   email: string;
   name: string;
+  listing_id: string | null // null for normal users
 };
 
 
@@ -15,6 +16,7 @@ export const getAuthToken = (user: user) => {
     id: user.id,
     email: user.email,
     name: user.name,
+    listing_id: user.listing_id
   };
   return jwt.sign(jwtPayload, process.env.JSON_WEB_TOKEN_SECRET??"");
 };

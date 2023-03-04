@@ -11,14 +11,14 @@ datasource db {
 }
 
 model user {
-    id                      String    @id @default(auto()) @map("_id") @db.ObjectId
+    id                      String   @id @default(auto()) @map("_id") @db.ObjectId
     name                    String
     picture                 String
-    email                   String    @unique
-    created_time            DateTime  @default(now())
-    last_token_generated_at DateTime  @default(now())
-    is_provider             Boolean   @default(false)
-    listings                listing[]
+    email                   String   @unique
+    created_time            DateTime @default(now())
+    last_token_generated_at DateTime @default(now())
+    listing_id              String?
+    listing                 listing?
 }
 
 model potential_provider {
@@ -39,14 +39,13 @@ model listing {
     picture_url  String
     projects     listings_projects[]
     admin        user                @relation(fields: [adminId], references: [id])
-    adminId      String              @db.ObjectId
+    adminId      String              @unique @db.ObjectId
 }
 
 model listings_projects {
-    id          String  @id @default(auto()) @map("_id") @db.ObjectId
-    provider    listing @relation(fields: [providerId], references: [id])
-    providerId  String  @db.ObjectId
-    asset_url   String
-    title       String
-    description String
+    id         String  @id @default(auto()) @map("_id") @db.ObjectId
+    listing   listing @relation(fields: [listingId], references: [id])
+    listingId String  @db.ObjectId
+    asset_url  String
+    short_desc String
 }

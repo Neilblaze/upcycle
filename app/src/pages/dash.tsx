@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 const DashScreen = () => {
     const {user}=useAuthStore()
     const router=useRouter()
-    if(user?.is_provider){
+    if(user?.listing_id){
         // redirect to provider dash
         router.push(PROVIDER_DASH)
     }else{

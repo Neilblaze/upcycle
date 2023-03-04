@@ -8,9 +8,16 @@ export const LOGOUT='/api/auth/logout'
 export const LANDING='/'
 
 
+export const ADD_PROJECT_FOR_PROVIDER='/p/add-project'
+
+
+
 export const REGISTER_PROVIDER_API = '/api/providers/register'
 export const LISTINGS_ALL_API = '/api/listings/all'
 export const AUTH_STATUS_API = '/api/auth/status'
 
 export const REGULAR_DASH = '/u/dash'
 export const PROVIDER_DASH = '/p/dash'
+
+
+export const ADD_PROJECT_FOR_PROVIDER_API = '/api/listings/add-project'

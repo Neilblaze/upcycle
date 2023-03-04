@@ -27,9 +27,8 @@ export default async function handler(
                 projects: {
                     select: {
                         asset_url: true,
-                        description: true,
                         id: true,
-                        title: true
+                        short_desc: true
                     }
                 }
             }
