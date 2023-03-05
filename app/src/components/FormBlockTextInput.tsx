@@ -1,7 +1,7 @@
 import { ErrorMessage, Field } from "formik"
 
 // must be used inside Formik
-export const FormBlockTextInput = ({ placeholder, id, label }: { placeholder: string, id: string, label: string }) => {
+export const FormBlockTextInput = ({ placeholder, id, label, as='input' }: { placeholder: string, id: string, label: string, as?: 'textarea' | 'input' }) => {
 	return (
 		<div className="mb-4">
 			<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor={id}>
@@ -11,6 +11,8 @@ export const FormBlockTextInput = ({ placeholder, id, label }: { placeholder: st
 				id={id}
 				type='text'
 				name={id}
+				as={as}
+				rows={3}
 				placeholder={placeholder}
 				required={true}
 				className='bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'

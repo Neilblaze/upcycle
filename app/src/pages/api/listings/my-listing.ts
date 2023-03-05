@@ -1,9 +1,26 @@
+
+
+// This is only for providers
+
+
+import { getAuthUser } from '@/utils/getAuthUser'
 import { PrismaClient } from '@prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-// route to send the list of all the providers/upcyclers in the app
-// currently we're not having any pagination
 
+export type Listings_MyListing_ApiResponse = {
+    categories: string[];
+    address: string;
+    listing_name: string;
+    picture_url: string;
+    adminId: string;
+    rating: number,
+    projects: {
+        id: string;
+        asset_url: string;
+        short_desc: string;
+    }[];
+} | null
 
 type Data = {
 
@@ -17,14 +34,18 @@ export default async function handler(
 ) {
     try {
         const primsa = new PrismaClient()
-        const results=await primsa.listing.findMany({
+
+        const user=getAuthUser(req)
+        if(!user?.listing_id) throw new Error('This route is only for upcyclers..')
+
+        const result=await primsa.listing.findUnique({
             select: {
                 categories: true,
                 address: true,
-                rating: true,
                 listing_name: true,
                 picture_url: true,
                 adminId: true,
+                rating: true,
                 projects: {
                     select: {
                         asset_url: true,
@@ -32,10 +53,13 @@ export default async function handler(
                         short_desc: true
                     }
                 }
+            },
+            where: {
+                adminId: user.id
             }
         })
         res.send({
-            listings: results
+            listing: result
         })
     } catch (err: any) {
         res.status(400).send({

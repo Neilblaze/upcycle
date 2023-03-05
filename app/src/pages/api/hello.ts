@@ -14,6 +14,7 @@ export default async function handler(
 
   const val = await (new PrismaClient()).listing.create({
     data: {
+      // 420 Blazeit Dr, Los Angeles, CA
       city: 'Pasadena',
       listing_name: 'Funky Fashion',
       picture_url: 'https://unsplash.com/photos/OYYE4g-I5ZQ/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8ZmFzaGlvbiUyMHN0b3JlfGVufDB8fHx8MTY3Nzk1NDg3Mg&force=true&w=640',

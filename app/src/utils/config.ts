@@ -19,5 +19,17 @@ export const AUTH_STATUS_API = '/api/auth/status'
 export const REGULAR_DASH = '/u/dash'
 export const PROVIDER_DASH = '/p/dash'
 
+export const UPDATE_STORE_PROFILE = '/p/update'
+
+
 
 export const ADD_PROJECT_FOR_PROVIDER_API = '/api/listings/add-project'
+
+
+export const MY_LISTING_FOR_PROVIDER_API = '/api/listings/my-listing'
+
+
+export const DELETE_PROJECT_FOR_PROVIDER_API = '/api/listings/delete-project'
+
+
+export const UPDATE_PROFILE_FOR_PROVIDER_API = '/api/listings/update-my-listing'

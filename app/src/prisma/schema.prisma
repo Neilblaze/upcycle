@@ -11,14 +11,15 @@ datasource db {
 }
 
 model user {
-    id                      String   @id @default(auto()) @map("_id") @db.ObjectId
+    id                      String           @id @default(auto()) @map("_id") @db.ObjectId
     name                    String
     picture                 String
-    email                   String   @unique
-    created_time            DateTime @default(now())
-    last_token_generated_at DateTime @default(now())
+    email                   String           @unique
+    created_time            DateTime         @default(now())
+    last_token_generated_at DateTime         @default(now())
     listing_id              String?
     listing                 listing?
+    listing_review          listing_review[]
 }
 
 model potential_provider {
@@ -32,20 +33,37 @@ model potential_provider {
 }
 
 model listing {
-    id           String              @id @default(auto()) @map("_id") @db.ObjectId
-    listing_name String
-    categories   String[]
-    city         String
-    picture_url  String
-    projects     listings_projects[]
-    admin        user                @relation(fields: [adminId], references: [id])
-    adminId      String              @unique @db.ObjectId
+    id             String              @id @default(auto()) @map("_id") @db.ObjectId
+    listing_name   String
+    categories     String[]
+    address        String
+    picture_url    String
+    projects       listings_projects[]
+    admin          user                @relation(fields: [adminId], references: [id])
+    adminId        String              @unique @db.ObjectId
+    listing_review listing_review[]
+    rating         Float               @default(-1)
 }
 
 model listings_projects {
     id         String  @id @default(auto()) @map("_id") @db.ObjectId
-    listing   listing @relation(fields: [listingId], references: [id])
-    listingId String  @db.ObjectId
+    listing    listing @relation(fields: [listingId], references: [id])
+    listingId  String  @db.ObjectId
     asset_url  String
     short_desc String
+}
+
+model listing_review {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    rating     Int
+    review_txt String
+
+    listing listing @relation(fields: [listingId], references: [id])
+    user    user    @relation(fields: [userId], references: [id])
+
+    listingId String @db.ObjectId
+    userId    String @db.ObjectId
+
+    @@unique([listingId, userId])
 }

@@ -2,7 +2,20 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ['upload.wikimedia.org', 'cdn3.volusion.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        port: '',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn3.volusion.com',
+        port: '',
+        pathname: '**',
+      },
+    ],
   },
 }
 

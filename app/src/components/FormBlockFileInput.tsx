@@ -1,6 +1,6 @@
 import { ErrorMessage, useField } from "formik";
 
-export const FormBlockFileInput = ({ id, label }: {id: string, label: string}) => {
+export const FormBlockFileInput = ({ id, label, required=true }: {id: string, label: string, required?:boolean}) => {
 	const [field, meta, helpers] = useField({ type: 'file', name: id, });
 	const { setValue } = helpers;
 
@@ -12,7 +12,7 @@ export const FormBlockFileInput = ({ id, label }: {id: string, label: string}) =
 				</label>
 				<input
 					id={id}
-					required
+					required={required}
 					type='file'
 					name={id}
 					accept='image/png, image/jpeg'

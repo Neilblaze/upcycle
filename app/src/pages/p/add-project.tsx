@@ -12,7 +12,7 @@ import { ButtonView } from "./dash"
 
 export const getErrorStringFromAxiosErr = (e: AxiosError) => {
     const tmp = (e.response?.data as any)
-    return tmp?.error ? tmp?.error : e.message;
+    return tmp?.error ? tmp?.error : (tmp?.message? tmp?.message : e.message);
 }
 
 const AddProject = () => {

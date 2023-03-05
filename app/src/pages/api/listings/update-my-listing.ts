@@ -26,50 +26,54 @@ export default async function handler(
 
         if (!user?.listing_id || !user.listing_id || user.listing_id === null) throw new Error('You\'re not managing any upcycling listing to perform this action...')
 
-        // upload.single('image')(req as any, res  as any, (err) => {
-        //     if (err instanceof multer.MulterError) {
-        //       console.error(err);
-        //       return res.status(500).json({ error: 'Error uploading file' });
-        //     } else if (err) {
-        //       console.error(err);
-        //       return res.status(500).json({ error: 'Unknown error occurred' });
-        //     }
-
-        //     // Do something with the form data
-        //     console.log(req.body);
-
-        //     return res.status(200).json({ message: 'File saved successfully' });
-        //   });
-
         const form = new formidable.IncomingForm();
         form.parse(req, async (err, fields, files) => {
             if (err) {
                 console.error(err);
                 return res.status(500).json({ error: 'Error parsing form data' });
             }
+            if (fields.listing_name && fields.listing_name.length > 50) {
+                return res.status(400).json({ error: 'listing_name should be between 1 to 50 chars' });
+            }
 
-            if((fields.short_desc as string).length >50){
-                return res.status(400).json({ error: 'Description should be <=50 chars' });
+            if (fields.address && fields.address.length > 50) {
+                return res.status(400).json({ error: 'address should be between 5 to 80 chars' });
+            }
+
+            const categories = (fields.categories as string).split('%%~~%%')
+
+            if (categories.length === 0) {
+                return res.status(400).json({ error: 'you should choose atleast one category/tags' });
             }
 
             // Do something with the form data
-            const filePath = (files.image as any).filepath
-
-            const assetUrl = await uploadFileFromPath(filePath, 'upcyclerx.appspot.com')
-            console.log(assetUrl, filePath)
+            let assetUrl = ''
+            if (files.image) {
+                const filePath = (files.image as any).filepath
+                assetUrl = await uploadFileFromPath(filePath, 'upcyclerx.appspot.com')
+                console.log(assetUrl, filePath)
+            }
 
             const prisma = (new PrismaClient())
 
-            const response = await prisma.listings_projects.create({
-                data: {
-                    asset_url: assetUrl,
-                    short_desc: fields.short_desc as string,
-                    listingId: user.listing_id as string
+            const data: any = {
+                address: fields.address as string,
+                listing_name: fields.listing_name as string,
+                categories: categories,
+
+            }
+            if (assetUrl) {
+                data['picture_url'] = assetUrl
+            }
+            const response = await prisma.listing.update({
+                data,
+                where: {
+                    id: user.listing_id as string
                 }
             })
 
             res.send({
-                newly_inserted_doc: response
+                updated_doc: response
             })
 
             prisma.$disconnect()
