@@ -16,23 +16,7 @@ import { getErrorStringFromAxiosErr } from './p/add-project'
 
 
 const UserDash = () => {
-    const [response, setResponse] = useState<ResponseChunk[]>([])
-    const [isLoading, setIsLoading] = useState(-1) // -1 means first attempt. 1 means loading, and 0 means not loading
-
     const [prompt, setPrompt] = useState('')
-
-    //   useEffect(() => {
-    //     axios
-    //       .get(LISTINGS_ALL_API)
-    //       .then((e) => {
-    //         setListings(e.data.listings)
-    //         setIsLoading(false)
-    //       })
-    //       .catch((err) => {
-    //         toast.error(getErrorStringFromAxiosErr(err))
-    //         setIsLoading(false)
-    //       })
-    //   }, [])
 
     return (
         <>
