@@ -15,9 +15,9 @@ const Upcycler = ({
   return (
     <>
       <Link href={`/stores/${id}`}>
-        <div className='relative h-[200px] w-full p-2 border bg-gradient-to-t from-black to-white'>
+        <div className='transition-all hover:scale-105 relative h-[200px] w-full p-2 border border-gray-500 bg-gradient-to-t from-black to-white'>
           <Image
-            className='rounded opacity-[40%]'
+            className='opacity-[40%]'
             src={imgUrl}
             alt={listingName}
             fill

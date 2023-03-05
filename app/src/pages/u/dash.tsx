@@ -10,6 +10,7 @@ import Upcycler from '@/components/user/Upcycler'
 import Image from 'next/image'
 import { withAuth } from '@/authGuards/withAuth'
 import { UserTopNavigation } from '@/components/UserTopNavigation'
+import Link from 'next/link'
 
 
 
@@ -62,6 +63,32 @@ const UserDash = () => {
 
                 </div>
               </>}
+
+
+
+
+            <Link href='/recycle-points'>
+              <div className='relative mt-7 shadow-lg w-11/12 mx-auto hover:scale-105 transition-all border border-gray-500 mb-20'>
+                <img className='opacity-80 h-[200px] w-full object-cover' src='https://unsplash.com/photos/eyfMgGvo9PA/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8NHx8bWFwfGVufDB8fHx8MTY3ODAxNzU4Ng&force=true&w=1920' />
+                <div className="absolute bottom-7  bg-red-100 w-full px-1 py-2">
+                  <div className='text-center w-full font-extrabold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 '>Browse nearest recycle points</div>
+                </div>
+              </div>
+
+            </Link>
+
+
+
+            {/* <iframe
+  width="600"
+  height="450"
+  style="border:0"
+  loading="lazy"
+  allowfullscreen
+  referrerpolicy="no-referrer-when-downgrade"
+  src="https://www.google.com/maps/embed/v1/place?key=API_KEY
+    &q=Space+Needle,Seattle+WA">
+</iframe> */}
 
           </div>
         </>}
