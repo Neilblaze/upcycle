@@ -22,33 +22,6 @@ import { ButtonView } from '@/pages/p/dash'
 import { useAuthStore } from '@/utils/useAuthStore'
 import Star from '../../../../assets/Star'
 
-const DUMMY_PROJECTS = [
-  {
-    id: '1',
-    listingName: 'Red Scarf',
-    imgUrl:
-      'https://cdn3.volusion.com/vzfy5.7tgvx/v/vspfiles/photos/PPSH-25-2.jpg?v-cache=1575031461',
-  },
-  {
-    id: '2',
-    listingName: 'Red Scarf2',
-    imgUrl:
-      'https://cdn3.volusion.com/vzfy5.7tgvx/v/vspfiles/photos/PPSH-25-2.jpg?v-cache=1575031461',
-  },
-  {
-    id: '3',
-    listingName: 'Red Scarf',
-    imgUrl:
-      'https://cdn3.volusion.com/vzfy5.7tgvx/v/vspfiles/photos/PPSH-25-2.jpg?v-cache=1575031461',
-  },
-  {
-    id: '4',
-    listingName: 'Red Scarf',
-    imgUrl:
-      'https://cdn3.volusion.com/vzfy5.7tgvx/v/vspfiles/photos/PPSH-25-2.jpg?v-cache=1575031461',
-  },
-]
-
 const UserDash = () => {
   const [listing, setListing] = useState<Listings_ById_ApiResponse>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -125,13 +98,20 @@ const UserDash = () => {
                   </div>
 
                   <div className='flex items-center justify-end mb-4'>
-                    {/* <h2 className='mb-4 font-bold text-[22px]'>Profile</h2> */}
                     <Link
                       href={`/stores/${id}-${Buffer.from(
                         listing.listing_name
                       ).toString('base64')}/leave-review`}
                     >
                       <ButtonView title='Leave a review' />
+                    </Link>
+                  </div>
+
+                  <div className='flex items-center justify-end mb-4'>
+                    <Link
+                      href={`/chat/${user?.id}-${id}`}
+                    >
+                      <ButtonView title='Chat with us' />
                     </Link>
                   </div>
 

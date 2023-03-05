@@ -1,5 +1,7 @@
 import { getErrorStringFromAxiosErr } from "@/pages/p/add-project"
+import { ALL_MESSAGES } from "@/utils/config"
 import axios from "axios"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { toast } from "react-toastify"
 
@@ -69,13 +71,17 @@ c32 -31 59 -64 59 -73 0 -17 -111 -130 -127 -130 -19 0 -33 25 -33 57 l0 33
 }
 
 export const BottomNavigation = () => {
-    const router=useRouter()
+    const router = useRouter()
 
     return (
         <div className="border-t pt-3 fixed bottom-3 flex justify-around w-full">
-            <HomeBulb active />
+            <Link href='/u/dash'>
+                <HomeBulb active={router.pathname === '/u/dash'}  />
+            </Link>
             <LightBulb />
-            <MessageIcon />
+            <Link href={ALL_MESSAGES}>
+                <MessageIcon active={router.pathname === ALL_MESSAGES} />
+            </Link>
             <button onClick={() => {
                 if (confirm('are you sure you want to logout?')) {
                     axios.get('/api/auth/logout').then(e => {

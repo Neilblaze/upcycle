@@ -9,6 +9,7 @@ import { getErrorStringFromAxiosErr } from '../p/add-project'
 import Upcycler from '@/components/user/Upcycler'
 import Image from 'next/image'
 import { withAuth } from '@/authGuards/withAuth'
+import { UserTopNavigation } from '@/components/UserTopNavigation'
 
 
 
@@ -32,7 +33,7 @@ const UserDash = () => {
     <>
       <div className='min-h-screen flex flex-col px-4 mx-auto'>
 
-        <h1 className='mb-4 mt-2 font-bold text-3xl text-[#FF5353]'>upcycle</h1>
+        <UserTopNavigation />
 
         <h1 className="text-2xl ml-2 font-black mb-7">Dashboard</h1>
 
@@ -65,8 +66,9 @@ const UserDash = () => {
           </div>
         </>}
 
-        <BottomNavigation />
       </div>
+      <BottomNavigation />
+
     </>
   )
 }

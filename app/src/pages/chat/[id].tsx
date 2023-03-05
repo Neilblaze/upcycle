@@ -1,6 +1,6 @@
 import { withAuth } from "@/authGuards/withAuth"
 import { UserTopNavigation } from "@/components/UserTopNavigation"
-import { UPLOAD_IMAGE_API } from "@/utils/config"
+import { CHAT_NORMALIZE_API, UPLOAD_IMAGE_API } from "@/utils/config"
 import { firestoreDb } from "@/utils/firebaseConfig"
 import { useAuthStore } from "@/utils/useAuthStore"
 import axios from "axios"
@@ -8,6 +8,7 @@ import { addDoc, collection, doc, onSnapshot, setDoc } from "firebase/firestore"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
+import { getErrorStringFromAxiosErr } from "../p/add-project"
 import { ButtonView } from "../p/dash"
 
 
@@ -22,6 +23,12 @@ const ChatInstance = () => {
 
     useEffect(() => {
         if (!id) return;
+
+        axios.get(CHAT_NORMALIZE_API(id)).then(e => {
+
+        }).catch(err => {
+            toast.error(getErrorStringFromAxiosErr(err))
+        })
         // subscribe for updates
         onSnapshot(collection(firestoreDb, 'chats', id, 'messages'), (doc) => {
             console.log('received a new chat')
@@ -64,6 +71,9 @@ const ChatInstance = () => {
 
 
                         <div className="flex flex-col gap-2 min-h-[70%] max-h-[70%] overflow-scroll">
+
+                        {chats.length === 0 && <div className='text-sm'>There are no messages! 😭 Shall we send one?</div> }
+
                             {chats.map((e, indx) => {
                                 const { message, sentBy, created_at: sentAt }: {message: string, sentBy: string, created_at: Date} = e
 

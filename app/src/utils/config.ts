@@ -21,6 +21,8 @@ export const PROVIDER_DASH = '/p/dash'
 
 export const UPDATE_STORE_PROFILE = '/p/update'
 
+export const ALL_MESSAGES = '/chat/all'
+
 
 
 export const ADD_PROJECT_FOR_PROVIDER_API = '/api/listings/add-project'
@@ -42,3 +44,7 @@ export const ADD_REVIEW_API = `/api/listings/add-review`
 
 
 export const UPLOAD_IMAGE_API = '/api/upload/image'
+
+
+export const CHAT_NORMALIZE_API = (id:string) => `/api/chat/${id}/normalize`
+export const CHAT_ALL_API =  `/api/chat/all`

@@ -15,7 +15,7 @@ export const FormBlockTextInput = ({ placeholder, id, label, as='input', type='t
 				rows={3}
 				placeholder={placeholder}
 				required={true}
-				className='bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5    dark:focus:ring-blue-500 dark:focus:border-blue-500'
+				className='bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '
 			/>
 			<p className="text-red-500 text-xs mt-1">
 				<ErrorMessage name={id} />
