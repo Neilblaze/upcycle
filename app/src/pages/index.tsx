@@ -2,10 +2,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import LandingPage from '../../assets/LandingPage'
+import { ButtonView } from './p/dash'
+import { useAuthStore } from '@/utils/useAuthStore'
+import Link from 'next/link'
+import { DASHBOARD } from '@/utils/config'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const {user}=useAuthStore()
+
   return (
     <>
       <Head>
@@ -16,7 +22,14 @@ export default function Home() {
       </Head>
 
       <main className='min-h-screen grid place-items-center'>
-        <LandingPage />
+        <div className='flex flex-col items-center gap-7'>
+
+          <LandingPage />
+          <Link href={!user? '/auth': DASHBOARD}>
+            <ButtonView title={user? 'go to Dashboard': 'Get started'} />
+          </Link>
+        </div>
+
       </main>
     </>
   )

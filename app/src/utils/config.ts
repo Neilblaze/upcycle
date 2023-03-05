@@ -39,3 +39,6 @@ export const LISTING_BY_ID_API = (id: string) => `/api/listings/${id}`
 
 
 export const ADD_REVIEW_API = `/api/listings/add-review`
+
+
+export const UPLOAD_IMAGE_API = '/api/upload/image'

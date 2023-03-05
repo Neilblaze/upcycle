@@ -15,6 +15,7 @@ import { withAuth } from '@/authGuards/withAuth'
 import { useRouter } from 'next/router'
 import { Listings_ById_ApiResponse } from '@/pages/api/listings/[id]'
 import { ButtonView } from '@/pages/p/dash'
+import { useAuthStore } from '@/utils/useAuthStore'
 
 const DUMMY_PROJECTS = [
   {
@@ -66,6 +67,9 @@ const UserDash = () => {
   }, [id])
 
   console.log('axx', listing)
+
+  const {user} = useAuthStore()
+
   return (
     <>
       {/* show list of all the providers */}
@@ -104,10 +108,14 @@ const UserDash = () => {
 
                 </div>
 
-                <div className='flex items-center justify-end mb-4'>
+                <div className='flex flex-col gap-3 items-end mb-4'>
                   {/* <h2 className='mb-4 font-bold text-[22px]'>Profile</h2> */}
                   <Link href={`/stores/${id}-${Buffer.from(listing.listing_name).toString('base64')}/leave-review`}>
                     <ButtonView title='Leave a review' />
+                  </Link>
+
+                  <Link href={`/chat/${id}-${user?.id}`}>
+                    <ButtonView title='Chat with us' />
                   </Link>
                 </div>
 

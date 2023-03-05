@@ -1,3 +1,7 @@
+import { getErrorStringFromAxiosErr } from "@/pages/p/add-project"
+import axios from "axios"
+import { useRouter } from "next/router"
+import { toast } from "react-toastify"
 
 
 
@@ -44,13 +48,49 @@ const HomeBulb = ({ active }: { active?: boolean }) => {
     )
 }
 
+const LogoutBulb = ({ active }: { active?: boolean }) => {
+    const color = active ? '#FF9153' : 'black'
+
+
+    return (
+        <svg className="w-10 h-10" xmlns="http://www.w3.org/2000/svg" width="96.000000pt" height="96.000000pt" viewBox="0 0 96.000000 96.000000" preserveAspectRatio="xMidYMid meet">
+            <g transform="translate(0.000000,96.000000) scale(0.100000,-0.100000)" fill={color} stroke="none">
+                <path d="M386 870 c-63 -16 -153 -70 -197 -117 -22 -24 -55 -74 -72 -111 -29
+-61 -32 -76 -32 -163 0 -90 2 -99 37 -171 45 -91 103 -147 196 -191 61 -29 76
+-32 162 -32 86 0 101 3 162 32 93 44 151 100 196 191 35 72 37 81 37 172 0 91
+-2 100 -37 172 -68 136 -188 217 -336 224 -42 2 -94 -1 -116 -6z m395 -317
+c32 -31 59 -64 59 -73 0 -17 -111 -130 -127 -130 -19 0 -33 25 -33 57 l0 33
+-140 0 -140 0 0 40 0 40 140 0 140 0 0 33 c0 32 14 57 33 57 5 0 35 -25 68
+-57z" />
+            </g>
+        </svg>
+
+    )
+}
+
 export const BottomNavigation = () => {
+    const router=useRouter()
+
     return (
         <div className="border-t pt-3 fixed bottom-3 flex justify-around w-full">
             <HomeBulb active />
             <LightBulb />
             <MessageIcon />
-            <UserIcon />
+            <button onClick={() => {
+                if (confirm('are you sure you want to logout?')) {
+                    axios.get('/api/auth/logout').then(e => {
+                        toast.success('logout successful!')
+                        router.push(`/`)
+                        window.location.reload()
+                    }).catch(err => {
+                        toast.error(getErrorStringFromAxiosErr(err))
+                    })
+                }
+            }}>
+
+                <LogoutBulb />
+            </button>
+
         </div>
     )
 }
