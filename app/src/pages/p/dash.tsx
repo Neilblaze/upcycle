@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { ADD_PROJECT_FOR_PROVIDER, DELETE_PROJECT_FOR_PROVIDER_API, GOOGLE_AUTH_START, MY_LISTING_FOR_PROVIDER_API, UPDATE_STORE_PROFILE } from '@/utils/config';
+import { ADD_PROJECT_FOR_PROVIDER, ALL_MESSAGES, DELETE_PROJECT_FOR_PROVIDER_API, GOOGLE_AUTH_START, MY_LISTING_FOR_PROVIDER_API, UPDATE_STORE_PROFILE } from '@/utils/config';
 import { BottomNavigation } from "@/components/BottomNavigation";
 import { ProviderTopNavigation } from "@/components/ProviderTopNavigation";
 import Link from "next/link";
@@ -62,13 +62,13 @@ const ProviderDash = () => {
 
                 {isLoading && <div>Loading the listing details...</div>}
 
-                {(!isLoading  && listing) && <>
+                {(!isLoading && listing) && <>
 
 
                     <div className="flex flex-col gap-5 mb-8">
 
 
-                        <img src={listing.picture_url} className='w-[90px] mb-2 h-[90px] bg-cover rounded'/>
+                        <img src={listing.picture_url} className='w-[90px] mb-2 h-[90px] bg-cover rounded' />
                         <div className='flex flex-col gap-2 mb-4'>
 
                             <div className='grid grid-cols-1 justify-between'>
@@ -82,15 +82,21 @@ const ProviderDash = () => {
 
                             <div className='grid grid-cols-1 justify-between'>
                                 <p className='font-bold'>Rating</p>
-                                <p>{listing.review_count === 0 ? 'unrated' : `${(listing.total_rating/listing.review_count).toFixed(3)} / 5`}</p>
+                                <p>{listing.review_count === 0 ? 'unrated' : `${(listing.total_rating / listing.review_count).toFixed(3)} / 5`}</p>
                             </div>
 
                         </div>
 
 
+                        <Link href={ALL_MESSAGES}>
+                            <ButtonView title="Messenger" />
+                        </Link>
+
                         <Link href={ADD_PROJECT_FOR_PROVIDER}>
                             <ButtonView title="Add a new project" />
                         </Link>
+
+
 
 
                         <Link href={UPDATE_STORE_PROFILE}>

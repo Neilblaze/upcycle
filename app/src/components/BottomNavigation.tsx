@@ -2,7 +2,7 @@ import { getErrorStringFromAxiosErr } from "@/pages/p/add-project"
 import { ALL_MESSAGES } from "@/utils/config"
 import axios from "axios"
 import Link from "next/link"
-import { useRouter } from "next/router"
+import { NextRouter, useRouter } from "next/router"
 import { toast } from "react-toastify"
 
 
@@ -50,7 +50,7 @@ const HomeBulb = ({ active }: { active?: boolean }) => {
     )
 }
 
-const LogoutBulb = ({ active }: { active?: boolean }) => {
+export const LogoutBulb = ({ active }: { active?: boolean }) => {
     const color = active ? '#FF9153' : 'black'
 
 
@@ -74,29 +74,35 @@ export const BottomNavigation = () => {
     const router = useRouter()
 
     return (
-        <div className="border-t pt-3 fixed bottom-3 flex justify-around w-full">
-            <Link href='/u/dash'>
-                <HomeBulb active={router.pathname === '/u/dash'}  />
+        <div className="border-t pt-3 border-black bg-gradient-to-r from-pink-200 via-pink-200 to-pink-200 p-0.5 shadow-xl fixed bottom-0 pb-3 flex justify-around w-full">
+            <Link href='/u/dash' className="flex justify-center items-center">
+                <HomeBulb active={router.pathname === '/u/dash'} />
             </Link>
-            <LightBulb />
-            <Link href={ALL_MESSAGES}>
+            <Link href={ALL_MESSAGES} className="flex justify-center items-center">
+                <LightBulb />
+            </Link>
+
+            <Link href={ALL_MESSAGES} className="flex justify-center items-center">
                 <MessageIcon active={router.pathname === ALL_MESSAGES} />
             </Link>
-            <button onClick={() => {
-                if (confirm('are you sure you want to logout?')) {
-                    axios.get('/api/auth/logout').then(e => {
-                        toast.success('logout successful!')
-                        router.push(`/`)
-                        window.location.reload()
-                    }).catch(err => {
-                        toast.error(getErrorStringFromAxiosErr(err))
-                    })
-                }
-            }}>
-
+            <button className="flex justify-center items-center" onClick={() => logoutUser(router)}>
                 <LogoutBulb />
             </button>
 
         </div>
     )
+}
+
+
+export const logoutUser = (router: NextRouter) => {
+
+    if (confirm('are you sure you want to logout?')) {
+        axios.get('/api/auth/logout').then(e => {
+            toast.success('logout successful!')
+            router.push(`/`)
+            window.location.href = '/'
+        }).catch(err => {
+            toast.error(getErrorStringFromAxiosErr(err))
+        })
+    }
 }

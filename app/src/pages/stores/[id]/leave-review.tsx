@@ -17,6 +17,7 @@ import { FormBlockTextInput } from '@/components/FormBlockTextInput'
 import { Form, Formik } from 'formik'
 import { ButtonView } from '@/pages/p/dash'
 import { withAuth } from '@/authGuards/withAuth'
+import { UserTopNavigation } from '@/components/UserTopNavigation'
 
 const LeaveReview = () => {
   const [listings, setListings] = useState<listing[]>([])
@@ -61,7 +62,7 @@ const LeaveReview = () => {
       {/* show list of all the providers */}
       <div className='min-h-screen px-4 mx-auto flex flex-col'>
 
-        <h1 className='mb-4 mt-2 font-bold text-3xl text-[#FF5353]'>upcycle</h1>
+        <UserTopNavigation />
 
         <div className='h-full mt-7'>
           <h1 className='mb-4 font-extrabold text-xl'>Hi {user?.name}!</h1>

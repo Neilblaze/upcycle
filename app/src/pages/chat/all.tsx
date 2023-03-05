@@ -101,8 +101,8 @@ const MessengerThreads = () => {
 
 
 
-                <BottomNavigation />
             </div>
+            {!user?.listing_id && <BottomNavigation />}
 
         </div>
     )

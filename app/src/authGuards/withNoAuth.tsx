@@ -1,6 +1,7 @@
 import { useAuthStore } from "@/utils/useAuthStore";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import { LoadingSpinner } from "./withAuth";
 
 export const withNoAuth = (WrappedComponent: any): React.FC<any> => {
     // eslint-disable-next-line react/display-name
@@ -9,7 +10,9 @@ export const withNoAuth = (WrappedComponent: any): React.FC<any> => {
         const router = useRouter();
 
         if (isLoading) {
-            return <div>Loading auth status...</div>;
+            return <div className="min-h-screen grid place-items-center">
+                <LoadingSpinner />
+            </div>
         } else if (error) {
             return <div>Error</div>;
         } else {

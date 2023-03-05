@@ -21,6 +21,7 @@ import { Listings_ById_ApiResponse } from '@/pages/api/listings/[id]'
 import { ButtonView } from '@/pages/p/dash'
 import { useAuthStore } from '@/utils/useAuthStore'
 import Star from '../../../../assets/Star'
+import { UserTopNavigation } from '@/components/UserTopNavigation'
 
 const UserDash = () => {
   const [listing, setListing] = useState<Listings_ById_ApiResponse>(null)
@@ -53,7 +54,7 @@ const UserDash = () => {
       {/* show list of all the providers */}
 
       <div className='min-h-screen flex flex-col px-4 mx-auto'>
-        <h1 className='mb-4 mt-2 font-bold text-3xl text-[#FF5353]'>upcycle</h1>
+        <UserTopNavigation />
 
         {isLoading && <div>Loading the store profile...</div>}
 
@@ -91,8 +92,8 @@ const UserDash = () => {
                         {listing.review_count === 0
                           ? 'unrated'
                           : `${(
-                              listing.total_rating / listing.review_count
-                            ).toFixed(3)} / 5`}
+                            listing.total_rating / listing.review_count
+                          ).toFixed(3)} / 5`}
                       </p>
                     </div>
                   </div>
