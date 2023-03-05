@@ -5,11 +5,12 @@ import { listing } from '@prisma/client'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { BottomNavigation } from '@/components/BottomNavigation'
-import { getErrorStringFromAxiosErr } from '../p/add-project'
+import { getErrorStringFromAxiosErr } from '../../p/add-project'
 import Upcycler from '@/components/user/Upcycler'
 import { GetServerSidePropsContext } from 'next'
 import Image from 'next/image'
 import Project from '@/components/user/Project'
+import Link from 'next/link'
 
 const DUMMY_PROJECTS = [
   {
@@ -61,7 +62,12 @@ const UserDash = ({ id }: { id: string }) => {
       <div className='h-screen flex flex-col'>
         <div className='h-full p-5'>
           <h1 className='mb-4 font-bold text-[50px]'>Name of Store</h1>
-          <h2 className='mb-4 font-bold text-[22px]'>Profile</h2>
+          <div className='flex items-center justify-between'>
+            <h2 className='mb-4 font-bold text-[22px]'>Profile</h2>
+            <Link href={`http://localhost:3000/u/${id}/leave-review`}>
+              <h2>Leave a review</h2>
+            </Link>
+          </div>
           <div className="w-[90px] mb-4 h-[90px] bg-cover rounded  bg-[url('https://upload.wikimedia.org/wikipedia/commons/a/a2/Mon_Ami_Boulangerie_%288119944759%29.jpg')]"></div>
           <div className='mb-4'>
             <div className='flex justify-between mb-2'>
