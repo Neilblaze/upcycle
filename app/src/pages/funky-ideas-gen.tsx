@@ -84,7 +84,7 @@ const UserDash = () => {
                     <div className='h-full'>
 
 
-                        {response.length === 0 ? <div className='text-sm'>Sorry we couldn't find any ideas for the above prompt! 😭</div> :
+                        {response.length === 0 ? <div className='text-sm'>Sorry we couldn&apos;t find any ideas for the above prompt! 😭</div> :
 
                             <>
                                 <div className='grid grid-cols-1 xsc:grid-cols-2 gap-4'>
