@@ -20,6 +20,7 @@ import { useRouter } from 'next/router'
 import { Listings_ById_ApiResponse } from '@/pages/api/listings/[id]'
 import { ButtonView } from '@/pages/p/dash'
 import { useAuthStore } from '@/utils/useAuthStore'
+import Star from '../../../../assets/Star'
 
 const DUMMY_PROJECTS = [
   {
@@ -72,7 +73,7 @@ const UserDash = () => {
 
   console.log('axx', listing)
 
-  const {user} = useAuthStore()
+  const { user } = useAuthStore()
 
   return (
     <>
@@ -165,12 +166,23 @@ const UserDash = () => {
                       to write one? 🥺
                     </div>
                   ) : (
-                    <div className='grid grid-cols-1 xsc:grid-cols-2 gap-4'>
+                    <div className='grid grid-cols-1 xsc:grid-cols-1 gap-4 h-[305px] overflow-auto'>
                       {listing.listing_review.map((review, indx) => (
-                        <div key={indx}>
-                          {/* TODO: Fix the UI */}
-                          {review.review_txt}
-                          {review.rating}
+                        <div
+                          key={indx}
+                          className='relative flex items-center w-full rounded bg-pink-300 p-6'
+                        >
+                          <div className='flex items-center mr-4'>
+                            <Star />
+                            <p className='ml-2'>{review.rating}</p>
+                          </div>
+                          <p className='overflow-hidden '>
+                            {review.review_txt}
+                          </p>
+
+                          <p className='absolute bottom-1 right-3 text-xs text-gray-500'>
+                            {new Date(review.submitted_at).toLocaleString()}
+                          </p>
                         </div>
                       ))}
                     </div>
