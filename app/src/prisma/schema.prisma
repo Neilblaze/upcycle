@@ -42,7 +42,8 @@ model listing {
     admin          user                @relation(fields: [adminId], references: [id])
     adminId        String              @unique @db.ObjectId
     listing_review listing_review[]
-    rating         Float               @default(-1)
+    total_rating         Int               @default(0)
+    review_count         Int               @default(0)
 }
 
 model listings_projects {
@@ -58,6 +59,7 @@ model listing_review {
 
     rating     Int
     review_txt String
+    submitted_at DateTime @default(now())
 
     listing listing @relation(fields: [listingId], references: [id])
     user    user    @relation(fields: [userId], references: [id])

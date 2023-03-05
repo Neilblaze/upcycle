@@ -8,12 +8,11 @@ import { PrismaClient } from '@prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 
-export type Listings_MyListing_ApiResponse = {
+export type Listings_ById_ApiResponse = {
     categories: string[];
     address: string;
     listing_name: string;
     picture_url: string;
-    adminId: string;
     review_count: number,
     total_rating: number,
     projects: {
@@ -21,10 +20,16 @@ export type Listings_MyListing_ApiResponse = {
         asset_url: string;
         short_desc: string;
     }[];
+    listing_review: {
+        rating: number;
+        id: string;
+        review_txt: string;
+        submitted_at: Date;
+    }[];
 } | null
 
 type Data = {
-
+    listing: Listings_ById_ApiResponse
 } | {
     message: string
 }
@@ -35,17 +40,14 @@ export default async function handler(
 ) {
     try {
         const primsa = new PrismaClient()
+        const user = getAuthUser(req)
 
-        const user=getAuthUser(req)
-        if(!user?.listing_id) throw new Error('This route is only for upcyclers..')
-
-        const result=await primsa.listing.findUnique({
+        const result = await primsa.listing.findUnique({
             select: {
                 categories: true,
                 address: true,
                 listing_name: true,
                 picture_url: true,
-                adminId: true,
                 review_count: true,
                 total_rating: true,
                 projects: {
@@ -54,12 +56,25 @@ export default async function handler(
                         id: true,
                         short_desc: true
                     }
+                },
+                listing_review: {
+                    select: {
+                        id: true,
+                        rating: true,
+                        review_txt: true,
+                        submitted_at: true,
+                    },
+                    orderBy: {
+                        submitted_at: 'desc'
+                    }
                 }
             },
             where: {
-                adminId: user.id
+                id: req.query.id as string
             }
         })
+
+        if(!result) throw new Error('Invalid store id')
         res.send({
             listing: result
         })

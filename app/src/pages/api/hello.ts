@@ -15,10 +15,10 @@ export default async function handler(
   const val = await (new PrismaClient()).listing.create({
     data: {
       address: '420 Blazeit Dr, Los Angeles, CA',
-      listing_name: 'Funky Fashion 2',
+      listing_name: 'Funky Fashion main',
       picture_url: 'https://unsplash.com/photos/OYYE4g-I5ZQ/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8ZmFzaGlvbiUyMHN0b3JlfGVufDB8fHx8MTY3Nzk1NDg3Mg&force=true&w=640',
       categories: ['Men\'s Wear'],
-      adminId: '64043f25c05e4f1540dc340f'
+      adminId: '64043f25c05e4f1540dc3412'
     }
   })
 

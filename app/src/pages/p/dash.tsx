@@ -82,7 +82,7 @@ const ProviderDash = () => {
 
                             <div className='grid grid-cols-1 justify-between'>
                                 <p className='font-bold'>Rating</p>
-                                <p>{listing.rating === -1 ? 'UNRATED': `${listing.rating} / 5`}</p>
+                                <p>{listing.review_count === 0 ? 'unrated' : `${(listing.total_rating/listing.review_count).toFixed(3)} / 5`}</p>
                             </div>
 
                         </div>

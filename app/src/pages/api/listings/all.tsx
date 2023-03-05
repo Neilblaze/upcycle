@@ -21,7 +21,8 @@ export default async function handler(
             select: {
                 categories: true,
                 address: true,
-                rating: true,
+                review_count: true,
+                total_rating: true,
                 id: true,
                 listing_name: true,
                 picture_url: true,

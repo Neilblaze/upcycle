@@ -33,3 +33,9 @@ export const DELETE_PROJECT_FOR_PROVIDER_API = '/api/listings/delete-project'
 
 
 export const UPDATE_PROFILE_FOR_PROVIDER_API = '/api/listings/update-my-listing'
+
+
+export const LISTING_BY_ID_API = (id: string) => `/api/listings/${id}`
+
+
+export const ADD_REVIEW_API = `/api/listings/add-review`

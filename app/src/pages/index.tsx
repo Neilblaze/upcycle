@@ -15,7 +15,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className='h-screen grid place-items-center'>
+      <main className='min-h-screen grid place-items-center'>
         <LandingPage />
       </main>
     </>

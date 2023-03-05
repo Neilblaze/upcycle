@@ -10,36 +10,7 @@ import Upcycler from '@/components/user/Upcycler'
 import Image from 'next/image'
 import { withAuth } from '@/authGuards/withAuth'
 
-// const DUMMY_LISTINGS = [
-//   {
-//     id: '1',
-//     listingName: 'Storefront',
-//     imgUrl:
-//       'https://upload.wikimedia.org/wikipedia/commons/a/a2/Mon_Ami_Boulangerie_%288119944759%29.jpg',
-//     location: 'Pasadena, CA',
-//   },
-//   {
-//     id: '2',
-//     listingName: 'Storefront',
-//     imgUrl:
-//       'https://upload.wikimedia.org/wikipedia/commons/a/a2/Mon_Ami_Boulangerie_%288119944759%29.jpg',
-//     location: 'Pasadena, CA',
-//   },
-//   {
-//     id: '3',
-//     listingName: 'Storefront',
-//     imgUrl:
-//       'https://upload.wikimedia.org/wikipedia/commons/a/a2/Mon_Ami_Boulangerie_%288119944759%29.jpg',
-//     location: 'Pasadena, CA',
-//   },
-//   {
-//     id: '4',
-//     listingName: 'Storefront',
-//     imgUrl:
-//       'https://upload.wikimedia.org/wikipedia/commons/a/a2/Mon_Ami_Boulangerie_%288119944759%29.jpg',
-//     location: 'Pasadena, CA',
-//   },
-// ]
+
 
 const UserDash = () => {
   const [listings, setListings] = useState<listing[]>([])
@@ -57,10 +28,9 @@ const UserDash = () => {
       })
   }, [])
 
-  console.log(listings)
   return (
     <>
-      <div className='h-screen flex flex-col px-4 mx-auto'>
+      <div className='min-h-screen flex flex-col px-4 mx-auto'>
 
         <h1 className='mb-4 mt-2 font-bold text-3xl text-[#FF5353]'>upcycle</h1>
 
