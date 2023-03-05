@@ -65,7 +65,7 @@ const UserDash = () => {
                 </form>
 
 
-                {isLoading === 1 && <div className='text-sm'>Loading fashion ideas based on the prompt...</div>}
+                {isLoading === 1 && <div className='text-sm text-gray-600"'>Loading fashion ideas based on the prompt...</div>}
 
                 {isLoading === -1 && <div className='text-sm flex justify-center'>
 

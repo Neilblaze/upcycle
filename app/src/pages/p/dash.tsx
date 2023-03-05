@@ -60,7 +60,7 @@ const ProviderDash = () => {
                 <h1 className="text-2xl ml-2 font-black mb-7">Dashboard</h1>
 
 
-                {isLoading && <div>Loading the listing details...</div>}
+                {isLoading && <div className="text-sm text-gray-600">Loading the listing details...</div>}
 
                 {(!isLoading && listing) && <>
 

@@ -56,7 +56,7 @@ const UserDash = () => {
       <div className='min-h-screen flex flex-col px-4 mx-auto'>
         <UserTopNavigation />
 
-        {isLoading && <div>Loading the store profile...</div>}
+        {isLoading && <div className="text-sm text-gray-600">Loading the store profile...</div>}
 
         {!isLoading && listing && (
           <>

@@ -38,7 +38,7 @@ const UserDash = () => {
         <h1 className="text-2xl ml-2 font-black mb-7">Dashboard</h1>
 
 
-        {isLoading && <div>Loading all the nearest stores around your area...</div>}
+        {isLoading && <div className='text-sm text-gray-600'>Loading all the nearest stores around your area...</div>}
 
         {(!isLoading && listings) && <>
           {/* show list of all the providers */}

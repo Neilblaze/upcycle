@@ -64,7 +64,7 @@ const ChatInstance = () => {
                 <h1 className="text-2xl ml-2 font-black mb-7">Messenger</h1>
 
 
-                {isLoading && <div>Loading the chat...</div>}
+                {isLoading && <div className="text-sm text-gray-600">Loading the chat...</div>}
 
                 {(!isLoading && chats) && <>
                     {/* show list of all the providers */}
