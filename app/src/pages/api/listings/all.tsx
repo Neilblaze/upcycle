@@ -22,6 +22,7 @@ export default async function handler(
                 categories: true,
                 address: true,
                 rating: true,
+                id: true,
                 listing_name: true,
                 picture_url: true,
                 adminId: true,

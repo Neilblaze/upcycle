@@ -14,17 +14,17 @@ const Upcycler = ({
 }) => {
   return (
     <>
-      <Link href={`http://localhost:3000/u/${id}`}>
-        <div className='relative h-[150px] w-full p-2 rounded bg-gradient-to-t from-black to-white'>
+      <Link href={`/stores/${id}`}>
+        <div className='relative h-[200px] w-full p-2 border bg-gradient-to-t from-black to-white'>
           <Image
-            className='rounded opacity-[50%]'
+            className='rounded opacity-[40%]'
             src={imgUrl}
             alt={listingName}
             fill
           />
           <div className='z-20 text-white absolute bottom-4 left-4'>
-            <h1>{listingName}</h1>
-            <p>{location}</p>
+            <h1 className='font-medium'>{listingName}</h1>
+            <p className='text-xs text-gray-300'>{`${location}`.substring(0,40) + `${location.length>40? '...': ''}`}</p>
           </div>
         </div>
       </Link>

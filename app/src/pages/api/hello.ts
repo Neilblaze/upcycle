@@ -14,12 +14,11 @@ export default async function handler(
 
   const val = await (new PrismaClient()).listing.create({
     data: {
-      // 420 Blazeit Dr, Los Angeles, CA
-      city: 'Pasadena',
-      listing_name: 'Funky Fashion',
+      address: '420 Blazeit Dr, Los Angeles, CA',
+      listing_name: 'Funky Fashion 2',
       picture_url: 'https://unsplash.com/photos/OYYE4g-I5ZQ/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8ZmFzaGlvbiUyMHN0b3JlfGVufDB8fHx8MTY3Nzk1NDg3Mg&force=true&w=640',
       categories: ['Men\'s Wear'],
-      adminId: '6403c3d3c05e4f1540dc33c9'
+      adminId: '64043f25c05e4f1540dc340f'
     }
   })
 
