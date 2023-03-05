@@ -1,4 +1,4 @@
-const { Storage } = require('@google-cloud/storage');
+import { Storage } from '@google-cloud/storage';
 
 // Copyright 2019 Google LLC
 //
@@ -35,7 +35,9 @@ export async function uploadFileFromPath(
     // Imports the Google Cloud client library
 
     // Creates a client
-    const storage = new Storage();
+    const storage = new Storage({
+        credentials: JSON.parse(process.env.GOOGLE_CLOUD_CREDS_AS_JSON as string)
+    });
 
     const options = {
         // Optional:
