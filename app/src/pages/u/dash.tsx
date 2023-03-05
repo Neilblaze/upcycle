@@ -6,7 +6,8 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { BottomNavigation } from '@/components/BottomNavigation'
 import { getErrorStringFromAxiosErr } from '../p/add-project'
-import Upcycler from '@/components/user-dash/Upcycler'
+import Upcycler from '@/components/user/Upcycler'
+import Image from 'next/image'
 
 const DUMMY_LISTINGS = [
   {
@@ -17,21 +18,21 @@ const DUMMY_LISTINGS = [
     location: 'Pasadena, CA',
   },
   {
-    id: '1',
+    id: '2',
     listingName: 'Storefront',
     imgUrl:
       'https://upload.wikimedia.org/wikipedia/commons/a/a2/Mon_Ami_Boulangerie_%288119944759%29.jpg',
     location: 'Pasadena, CA',
   },
   {
-    id: '1',
+    id: '3',
     listingName: 'Storefront',
     imgUrl:
       'https://upload.wikimedia.org/wikipedia/commons/a/a2/Mon_Ami_Boulangerie_%288119944759%29.jpg',
     location: 'Pasadena, CA',
   },
   {
-    id: '1',
+    id: '4',
     listingName: 'Storefront',
     imgUrl:
       'https://upload.wikimedia.org/wikipedia/commons/a/a2/Mon_Ami_Boulangerie_%288119944759%29.jpg',
