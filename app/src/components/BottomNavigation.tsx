@@ -1,5 +1,5 @@
 import { getErrorStringFromAxiosErr } from "@/pages/p/add-project"
-import { ALL_MESSAGES } from "@/utils/config"
+import { ALL_MESSAGES, FUNKY_IDEAS_GEN } from "@/utils/config"
 import axios from "axios"
 import Link from "next/link"
 import { NextRouter, useRouter } from "next/router"
@@ -78,8 +78,8 @@ export const BottomNavigation = () => {
             <Link href='/u/dash' className="flex justify-center items-center">
                 <HomeBulb active={router.pathname === '/u/dash'} />
             </Link>
-            <Link href={ALL_MESSAGES} className="flex justify-center items-center">
-                <LightBulb />
+            <Link href={FUNKY_IDEAS_GEN} className="flex justify-center items-center">
+                <LightBulb active={router.pathname === FUNKY_IDEAS_GEN} />
             </Link>
 
             <Link href={ALL_MESSAGES} className="flex justify-center items-center">

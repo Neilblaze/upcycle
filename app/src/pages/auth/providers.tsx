@@ -1,10 +1,12 @@
 import Head from "next/head"
-import {  REGISTER_PROVIDER_API } from '@/utils/config';
+import { REGISTER_PROVIDER_API } from '@/utils/config';
 import { Field, Form, Formik } from "formik";
 import axios from "axios";
 import { potential_provider } from "@prisma/client";
 import { toast } from "react-toastify";
 import { getErrorStringFromAxiosErr } from "../p/add-project";
+import { withAuth } from "@/authGuards/withAuth";
+import { withNoAuth } from "@/authGuards/withNoAuth";
 
 
 const PotentialProviderForm = () => {
@@ -27,22 +29,25 @@ const PotentialProviderForm = () => {
                             initialValues={{ name: '', email: '', phone: '', address: '', why_join: '', experience: '', }}
                             onSubmit={async (values, { resetForm }) => {
                                 const payload: Omit<potential_provider, 'id'> = values
-                                try{
+                                try {
                                     const response = await axios.post(REGISTER_PROVIDER_API, payload)
                                     resetForm()
                                     toast.success('Successfully submitted the application form! 🔥')
-                                }catch(err: any){
+                                } catch (err: any) {
                                     toast.error(getErrorStringFromAxiosErr(err))
                                 }
-
                             }}
                         >
 
-                            <Form className="space-y-4">
-                                <div>
+                            <Form className="space-y-4 w-full">
+
+                                <div className="text-xs text-red-500 px-4">
+                                    Please ensure that the EMAIL has either twitter or google social signin enabled!
+                                </div>
+                                <div className="">
                                     <label className="sr-only" htmlFor="name">Name</label>
                                     {/* <Field type='' */}
-                                    <Field required className="w-full rounded-lg border-gray-200 p-3 text-sm border" placeholder="Name" type="text" id="name" name='name' />
+                                    <Field required className="w-full rounded-lg border-gray-200 p-3 text-sm border" placeholder="Store Name" type="text" id="name" name='name' />
                                 </div>
                                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                     <div>
@@ -94,4 +99,4 @@ const PotentialProviderForm = () => {
     )
 }
 
-export default PotentialProviderForm
+export default withNoAuth(PotentialProviderForm)

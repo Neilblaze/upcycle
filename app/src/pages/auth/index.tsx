@@ -1,6 +1,8 @@
 import Head from "next/head"
 import { GOOGLE_AUTH_START } from '@/utils/config';
 import { withNoAuth } from "@/authGuards/withNoAuth";
+import { ButtonView } from "../p/dash";
+import Link from "next/link";
 
 
 const AuthScreen = () => {
@@ -27,7 +29,6 @@ const AuthScreen = () => {
 
 
                         <div onClick={() => alert('Twitter auth is currently in review. Will be activated very soon!')} className="cursor-pointer rounded-md mb-1 inline-flex items-center gap-2 w-full border-2 justify-center border-[#55acee] bg-[#55acee] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-[#55acee] focus:outline-none focus:ring active:opacity-75" >
-
                             <svg className="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                             </svg>
@@ -40,7 +41,22 @@ const AuthScreen = () => {
                         <p className="text-xs text-gray-400">
                             Please authenticate to unleash the full power of this app! 💪
                         </p>
+
+                        <div className="flex justify-end w-full">
+
+                            <Link href='/auth/providers' className="mt-10">
+                                <div className="group relative inline-block focus:outline-none focus:ring">
+                                    <span className="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-yellow-300 transition-transform group-hover:translate-y-0 group-hover:translate-x-0" />
+                                    <span className="relative rounded inline-block border border-current px-3 py-1 text-sm uppercase tracking-widest text-black group-active:text-opacity-75">
+                                        Register as a provider...
+                                    </span>
+                                </div>
+                            </Link>
+                        </div>
+
+
                     </div>
+
 
                 </div>
 

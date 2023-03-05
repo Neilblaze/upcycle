@@ -48,3 +48,9 @@ export const UPLOAD_IMAGE_API = '/api/upload/image'
 
 export const CHAT_NORMALIZE_API = (id:string) => `/api/chat/${id}/normalize`
 export const CHAT_ALL_API =  `/api/chat/all`
+
+
+export const FUNKY_IDEAS_GEN='/funky-ideas-gen'
+
+
+export const FUNKY_IDEAS_GEN_API=(query: string) => `/api/funky-ideas-proxy/${query}`
