@@ -67,5 +67,6 @@ model listing_review {
     listingId String @db.ObjectId
     userId    String @db.ObjectId
 
-    @@unique([listingId, userId])
+    // for now removing it.
+    // @@unique([listingId, userId])
 }

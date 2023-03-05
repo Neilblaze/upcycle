@@ -78,7 +78,7 @@ const LeaveReview = () => {
               store_id: storeId
             }).then((e) => {
               toast.success('review submitted successfully!')
-              router.push(`stores/${storeId}`)
+              router.push(`/stores/${storeId}`)
             })
               .catch((err) => {
                 toast.error(getErrorStringFromAxiosErr(err))
