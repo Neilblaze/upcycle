@@ -1,3 +1,4 @@
+import { UserTopNavigation } from '@/components/UserTopNavigation';
 import '@/styles/globals.css'
 import { AUTH_STATUS_API } from '@/utils/config';
 import { useAuthStore } from '@/utils/useAuthStore';
@@ -25,18 +26,25 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [])
 
 
-  const [isWidthOkay,setIsWidthOkay]=useState(true)
+  const [isWidthOkay, setIsWidthOkay] = useState(true)
 
   useEffect(() => {
     const handleEvent = (ev: any) => {
-      setIsWidthOkay(window.innerWidth<650)
+      setIsWidthOkay(window.innerWidth < 650)
     }
     handleEvent(window.innerWidth)
     window.addEventListener('resize', handleEvent)
     return () => window.removeEventListener('resize', handleEvent)
   }, [])
   return <>
-    {isWidthOkay? <Component {...pageProps} />: <div className='text-center mt-10 font-bold'>Sorry! this webapp is only for mobile phones. 😞</div>}
+    {isWidthOkay ? <Component {...pageProps} /> : <div className='text-center'>
+      <UserTopNavigation />
+      <div className="mt-10"></div>
+      <span className='font-extrabold text-transparent text-xl bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'>
+        Sorry! this webapp is only for mobile phones.
+      </span>
+      <img src='/sorry.png' className='max-w-xs mt-6 mx-auto' />
+    </div>}
     <ToastContainer autoClose={2000} />
   </>
 }
