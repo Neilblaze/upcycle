@@ -40,9 +40,9 @@ export default function App({ Component, pageProps }: AppProps) {
     {isWidthOkay ? <Component {...pageProps} /> : <div className='text-center'>
       <UserTopNavigation />
       <div className="mt-10"></div>
-      <span className='font-extrabold text-transparent text-xl bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'>
-        Sorry! this webapp is only for mobile phones.
-      </span>
+      <div className='max-w-xl mx-auto font-medium text-transparent text-xl bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'>
+      Thanks for visiting our web app! For the best viewing experience, please access it on a <span className='font-extrabold'>mobile</span> or <span className='font-extrabold'> smaller device</span>.
+      </div>
       <img src='/sorry.png' className='max-w-xs mt-6 mx-auto' />
     </div>}
     <ToastContainer autoClose={2000} />
